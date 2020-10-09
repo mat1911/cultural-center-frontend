@@ -1,0 +1,37 @@
+<div class="carousel_area" *ngIf='affairsListForCarousel && affairsListForCarousel.length'>
+    <ngb-carousel>
+        <ng-template *ngFor="let affair of affairsListForCarousel; let i = index" ngbSlide>
+            <div class="picsum-img-wrapper">
+                <a><img [src]="affair.pictureUrl" [alt]="affair.title"></a>
+                <div class="carousel-caption">
+                    <h3>{{affair.title}}</h3>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div>
+
+<div class="content_title">WYDARZENIA</div>
+<ul class='list-group mb-5' *ngIf='affairList && affairList.length'>
+    <li class="page_content list-group-item d-flex align-items-center" *ngFor='let affair of affairList'>
+        <div style="background-color: black;"><a><img [src]='affair.pictureUrl' [title]='affair.title' alt='...'
+                    class="img-thumbnail "></a></div>
+        <div class="description w-100">
+            <ngb-rating max=5 [rate]="affair.rate"  (rateChange)="addNewAffairRate($event, affair.id)"  ></ngb-rating>
+            <p class="text-right font-weight-bold">{{affair.sinceDate}}</p>
+            <p class="font-weight-bold text-center text-break">{{affair.title}}</p>
+            <p class="text-center ">{{affair.shortDescription}}</p>
+            <a *ngIf="affair.availableSeats > 0" (click)="enrollModal.openModal(); selectedAffair=affair.id" class="btn btn-dark" role="button">Zapisz się</a>
+            <a *ngIf="affair.availableSeats <= 0" class="btn btn-danger disabled" role="button" >Brak miejsc!</a>
+        </div>
+    </li>
+    <div class="d-flex justify-content-center mt-5">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+            [collectionSize]="collectionSize"></ngb-pagination>
+    </div>
+</ul>
+
+<app-modal #enrollModal (okClicked)="enrollToAffair()" [modalTitle]='"Zapis na wydarzenie"'>
+    <p *ngIf="authService.isLoggedIn()">Czy na pewno chcesz zapisać się na wybrane wydarzenie?</p>
+    <p *ngIf="!authService.isLoggedIn()" class="font-weight-bold" style="color: red">Dostęp do zapisów mają tylko zalogowani użytkownicy!</p>
+</app-modal>

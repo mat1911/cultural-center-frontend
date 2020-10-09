@@ -1,0 +1,94 @@
+<div class="content_title">Edycja wydarzenia</div>
+<ul class='content list-group mb-5'>
+    <p *ngIf="affairId != null" class="font-weight-bold text-right">Utworzył:
+        {{currentAffair.ownerName + " " + currentAffair.ownerSurname}}</p>
+    <li class="list-group-item">
+        <form [formGroup]="affairFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="font-weight-bold" for="title" name="affairTitle">Tytuł</label>
+                <input formControlName="title" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': affairForm.title.touched && affairForm.title.errors != null }" id="title"
+                    placeholder="Wprowadź tytuł" required>
+
+                <div *ngIf="affairForm.title.touched && affairForm.title.errors != null" class="invalid-feedback">
+                    Tytuł powinien zawierać minimum 3 znaki!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="shortDescription">Krótki opis</label>
+                <textarea formControlName="shortDescription" type="text" class="form-control" rows="3"
+                    id="shortDescription" maxlength="1000" placeholder="Wprowadź krótki opis (max 255 znaków)"
+                    [ngClass]="{ 'is-invalid': affairForm.shortDescription.touched && affairForm.shortDescription.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="affairForm.shortDescription.touched && affairForm.shortDescription.errors != null"
+                    class="invalid-feedback">
+                    Krótki opis powinien zawierać minimum 3 znaki!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="availableSeats">Ilość miejsc</label>
+                <input formControlName="availableSeats" type="number" class="form-control" rows="3" id="availableSeats"
+                    placeholder="Wprowadź ilość wolnych miejsc"
+                    [ngClass]="{ 'is-invalid': affairForm.availableSeats.touched && affairForm.availableSeats.errors != null }"
+                    min="1" />
+
+                <div *ngIf="affairForm.availableSeats.touched && affairForm.availableSeats.errors != null"
+                    class="invalid-feedback">
+                    Ilość miejsc powinna być większa od 0!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="fileInput">Dodaj obrazek [*.jpg lub *.png lub *.jpeg]</label>
+                <input (change)="onFileChange($event)" type="file" class="form-control-file" id="fileInput"
+                    [ngClass]="{ 'is-invalid': affairForm.picture.touched && affairForm.picture.errors != null }"
+                    required>
+
+                <div *ngIf="affairForm.picture.touched && affairForm.picture.errors != null" class="invalid-feedback">
+                    Akceptowalne formaty to jpg, png oraz jpeg. Rozmiar pliku nie może przekraczać 90KB.
+                </div>
+            </div>
+
+            <div class="d-flex align-content-center">
+                <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+                <button *ngIf="affairId" (click)="deletingModal.openModal()" type="button"
+                    class="btn btn-danger ml-5 mt-5">Usuń</button>
+            </div>
+        </form>
+    </li>
+</ul>
+
+<diV *ngIf="affairId">
+    <div class="content_title">Zapisani użytkownicy</div>
+
+    <div class="center d-flex justify-content-end">
+        <a *ngIf="!showUsersTable" (click)="showUsersTable=true" class="btn btn-dark mb-0">Przypisz użytkownika</a>
+    </div>
+    <div *ngIf="showUsersTable" class="center">
+        <app-user-selector (choicesSubmitted)="enrollUsers($event)"></app-user-selector>
+    </div>
+    <div *ngIf="!showUsersTable" class="center">
+        <app-enrolled-users-list class="center" (delistButtonClicked)="delistModal.openModal(); selectedUserId=$event"
+            [users$]='enrolledUsers$'></app-enrolled-users-list>
+    </div>
+</diV>
+
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+<app-modal #deletingModal (okClicked)="deleteAffair()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć tę aktualizację?</p>
+</app-modal>
+
+<app-modal #delistModal (okClicked)="delistUser()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz wypisać tego użytkownika z wydarzenia?</p>
+</app-modal>

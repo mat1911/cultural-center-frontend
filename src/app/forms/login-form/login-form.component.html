@@ -1,0 +1,25 @@
+<div class="content_title">Logowanie</div>
+<ul class='page_content list-group mb-5'>
+    <li class=" list-group-item">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+            <label class="mt-3 font-weight-bold" for="username" name="username">Login</label>
+            <input formControlName="username" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': loginForm.username.touched && loginForm.username.errors != null }" id="username"
+                placeholder="Wprowadź nazwę użytkownika" required>
+
+            <div *ngIf="loginForm.username.errors != null" class="invalid-feedback">
+                Nazwa użytkownika musi być podana!
+            </div>
+
+            <label class="mt-3 font-weight-bold" for="password" name="password">Hasło</label>
+            <input formControlName="password" type="password" class="form-control"
+                [ngClass]="{'is-invalid': loginForm.username.touched && loginForm.password.errors != null}" id="password" placeholder="Wprowadź hasło"
+                required>
+
+            <div *ngIf="loginForm.password.errors != null" class="invalid-feedback">
+                Hasło musi być podane!
+            </div>
+            <button class="mt-3 btn btn-primary" type="submit">Zaloguj się</button>
+        </form>
+    </li>
+</ul>

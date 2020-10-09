@@ -1,0 +1,18 @@
+<div class="content_title">Rejestracja</div>
+<ul class='page_content list-group mb-5'>
+    <li class=" list-group-item">
+        <form [formGroup]="registrationFormGroup" (ngSubmit)="onSubmit()">
+            <app-profile-form formControlName="profile"></app-profile-form>
+            <app-password-form formControlName="password"></app-password-form>
+            <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+        </form>
+    </li>
+</ul>
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Trwa zakładanie nowego konta. Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Po zakończeniu operacji zobaczysz stronę do logowania!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>

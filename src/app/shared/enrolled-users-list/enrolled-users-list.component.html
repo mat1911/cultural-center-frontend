@@ -1,0 +1,31 @@
+<div>
+    <div *ngIf="users$ | async as users">
+        <table *ngIf="users && users.length" class="table table-bordered mb-5">
+            <thead>
+                <tr>
+                    <th width="10%" scope="col">ID</th>
+                    <th width="25%" scope="col">Imie</th>
+                    <th width="25%" scope="col">Nazwisko</th>
+                    <th width="20%" scope="col">Email</th>
+                    <th width="20%" scope="col">Telefon</th>
+                    <th width="10%"scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phoneNumber}}</td>
+                    <td><a class="btn btn-danger" (click)="delistUser(user.id)"><i
+                                class="fa fa-minus-square"></i> </a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="!(users && users.length)" class="list-group mb-5">
+            <h5 class="list-group-item text-center">Brak zapisanych osób</h5>
+        </div>
+    </div>
+</div>

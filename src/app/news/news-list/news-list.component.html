@@ -1,0 +1,34 @@
+<div class="carousel_area" *ngIf='newsListForCarousel && newsListForCarousel.length'>
+        <ngb-carousel >
+            <ng-template *ngFor="let news of newsListForCarousel; let i = index"  ngbSlide>
+              <div *ngIf="i == 0">
+                <a [routerLink]="['/news', news.id]"><img class="my-image img-responsive center-block" [src]="news.pictureUrl" [alt]="news.title"></a>
+                <div class="carousel-caption">
+                  <h3>{{news.title}}</h3>
+                </div>
+              </div>
+              <div class="picsum-img-wrapper" *ngIf="i > 0">
+                <a [routerLink]="['/news', news.id]"><img [src]="news.pictureUrl" [alt]="news.title"></a>
+                <div class="carousel-caption">
+                  <h3>{{news.title}}</h3>
+                </div>
+              </div>
+            </ng-template>
+        </ngb-carousel>
+</div>
+
+<div class="content_title">AKTUALNOŚCI</div>
+<ul class='list-group mb-5' *ngIf='newsList && newsList.length'>
+  <li class="page_content list-group-item d-flex align-items-center" *ngFor='let news of newsList'>
+    <div style="background-color: black;"><a [routerLink]="['/news', news.id]"><img [src]='news.pictureUrl' [title]='news.title' alt='...' class="img-thumbnail "></a></div>
+    <div class="description w-100">
+      <p class="text-right font-weight-bold">{{news.dateOfAdd}}</p>
+      <p class="font-weight-bold text-center text-break">{{news.title}}</p>
+      <p class="text-break text-center text">{{news.shortDescription}}</p>
+      <a [routerLink]="['/news', news.id]" class="btn btn-dark" role="button">Czytaj</a>
+     </div>
+  </li>
+  <div class = "d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()" [collectionSize]="collectionSize" ></ngb-pagination>
+  </div>
+</ul>

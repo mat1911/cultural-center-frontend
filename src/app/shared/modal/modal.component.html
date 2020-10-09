@@ -1,0 +1,17 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+        <button *ngIf="showCloseButton" type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+        <div class="d-flex justify-content-between w-100">
+            <button *ngIf="showCloseButton" type="button" class="btn btn-outline-dark" (click)="closeModal()">Cofnij</button>
+            <button *ngIf="showOkButton" type="button" class="btn btn-danger" (click)="closeModalAndEmit()">Zatwierdź</button>
+        </div>
+    </div>
+</ng-template>

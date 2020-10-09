@@ -1,0 +1,27 @@
+<div class="content_title">LISTA WYDARZEŃ</div>
+<div class="content">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Obrazek</th>
+        <th scope="col">Tytuł</th>
+        <th scope="col">Data dodania</th>
+        <th scope="col"><a [routerLink]="['/admin/affairs/new']" class="btn btn-danger">Dodaj</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let affair of affairList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td><img [src]="affair.pictureUrl" [alt]="affair.title" width="100px"></td>
+        <td>{{affair.title}}</td>
+        <td>{{affair.sinceDate}}</td>
+        <td><a [routerLink]="['/admin/affairs', affair.id]" class="btn btn-dark">Edytuj</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+      [collectionSize]="collectionSize"></ngb-pagination>
+  </div>
+</div>

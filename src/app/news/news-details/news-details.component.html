@@ -1,0 +1,13 @@
+<div class="picture_area">
+    <img [src]="currentNews.pictureUrl" alt="Brak obrazka :("/>
+</div>
+
+<div class="content_title">{{currentNews.title}}</div>
+<ul class='list-group mb-5'>
+    <li class="page_content list-group-item d-flex">
+      <div class="news_description align-self-center w-100">
+        <p class="text-right font-weight-bold">{{currentNews.dateOfAdd}}</p>
+        <p class="text-center">{{currentNews.description}}</p>
+       </div>
+    </li>
+  </ul>

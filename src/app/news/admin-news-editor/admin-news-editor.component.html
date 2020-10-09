@@ -1,0 +1,68 @@
+<div class="content_title">Edycja aktualności</div>
+<ul class='content list-group mb-5'>
+    <li class=" list-group-item">
+        <form [formGroup]="newsFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="font-weight-bold" for="title" name="newsTitle">Tytuł</label>
+                <input formControlName="title" type="text" class="form-control is-invalid"
+                    [ngClass]="{ 'is-invalid': submitted && newsForm.title.errors != null }" id="title"
+                    placeholder="Wprowadź tytuł" required>
+
+                <div *ngIf="submitted && newsForm.title.errors != null" class="invalid-feedback">
+                    <div *ngIf="newsForm.title.errors.required">Tytuł powinien zawierać minimum 3 znaki!</div>
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="shortDescription">Krótki opis</label>
+                <textarea formControlName="shortDescription" type="text" class="form-control" rows="3"
+                    id="shortDescription" maxlength="255" placeholder="Wprowadź krótki opis (max 255 znaków)"
+                    [ngClass]="{ 'is-invalid': submitted && newsForm.shortDescription.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="submitted && newsForm.shortDescription.errors != null" class="invalid-feedback">
+                    <div *ngIf="newsForm.shortDescription.errors.required">Krótki opis powinien zawierać minimum 3
+                        znaki!</div>
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="fullDescription">Pełen opis</label>
+                <textarea formControlName="description" type="text" class="form-control" rows="5" id="fullDescription"
+                    maxlength="2000" placeholder="Wprowadź krótki opis (max 2000 znaków)"
+                    [ngClass]="{ 'is-invalid': submitted && newsForm.description.errors != null }" required></textarea>
+
+                <div *ngIf="submitted && newsForm.description.errors != null" class="invalid-feedback">
+                    <div *ngIf="newsForm.description.errors.required">Opis powinien zawierać minimum 3 znaki!</div>
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="fileInput">Dodaj obrazek [*.jpg lub *.png]</label>
+                <input (change)="onFileChange($event)" type="file" class="form-control-file" id="fileInput"
+                    [ngClass]="{ 'is-invalid': submitted && newsForm.picture.errors != null }" required>
+
+                <div *ngIf="submitted && newsForm.picture.errors != null" class="invalid-feedback">
+                    Akceptowalne formaty to jpg, png oraz jpeg. Rozmiar pliku nie może przekraczać 90KB.
+                </div>
+            </div>
+
+            <div class="d-flex align-content-center">
+                <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+                <button *ngIf="newsId" (click)="deletingModal.openModal()" type="button" class="btn btn-danger ml-5 mt-5">Usuń</button>
+            </div>
+        </form>
+    </li>
+</ul>
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+<app-modal #deletingModal (okClicked) = "deleteNews()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć tę aktualizację?</p>
+</app-modal>

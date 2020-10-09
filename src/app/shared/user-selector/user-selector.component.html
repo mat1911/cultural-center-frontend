@@ -1,0 +1,37 @@
+<div>
+    <div class="form-inline w-100">
+        <input class="form-control" style="width: 95%;" [(ngModel)]="filter" type="text" placeholder="Wprowadź słowo kluczowe..." />
+        <button (click)="loadUsersPage()" class="btn btn-secondary" style="width: 5%;"><i class="fa fa-search"></i></button>
+    </div>
+
+    <table class="table table-bordered mb-5">
+        <thead>
+            <th colspan="8" class="text-center table-dark">ZAREJESTROWANI UŻYTKOWNICY</th>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Imie</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Login</th>
+                <th scope="col">Wiek</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefon</th>
+                <th class="text-center" sscope="col"><button (click)="onSubmit()" class="btn btn-dark">Zatwierdź wybór</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td class="text-center"><input type="checkbox" (click)="changeSelectedUser(user.id)"/></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-5">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="loadUsersPage()" [collectionSize]="collectionSize" ></ngb-pagination>
+    </div>
+</div>
