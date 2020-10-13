@@ -19,7 +19,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     SharedModule,
-    NgbModule,
     RouterModule.forChild(
       [
         { path: 'register', component: RegisterFormComponent },

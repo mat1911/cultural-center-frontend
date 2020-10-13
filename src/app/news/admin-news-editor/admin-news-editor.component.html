@@ -16,7 +16,7 @@
             <div class="form-group pt-3">
                 <label class="font-weight-bold" for="shortDescription">Krótki opis</label>
                 <textarea formControlName="shortDescription" type="text" class="form-control" rows="3"
-                    id="shortDescription" maxlength="255" placeholder="Wprowadź krótki opis (max 255 znaków)"
+                    id="shortDescription" maxlength="1000" placeholder="Wprowadź krótki opis (max 255 znaków)"
                     [ngClass]="{ 'is-invalid': submitted && newsForm.shortDescription.errors != null }"
                     required></textarea>
 
@@ -29,7 +29,7 @@
             <div class="form-group pt-3">
                 <label class="font-weight-bold" for="fullDescription">Pełen opis</label>
                 <textarea formControlName="description" type="text" class="form-control" rows="5" id="fullDescription"
-                    maxlength="2000" placeholder="Wprowadź krótki opis (max 2000 znaków)"
+                    maxlength="3000" placeholder="Wprowadź krótki opis (max 2000 znaków)"
                     [ngClass]="{ 'is-invalid': submitted && newsForm.description.errors != null }" required></textarea>
 
                 <div *ngIf="submitted && newsForm.description.errors != null" class="invalid-feedback">

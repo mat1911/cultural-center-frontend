@@ -64,10 +64,6 @@ export class AdminAffairsEditorComponent implements OnInit {
 
   loadEnrolledForAffairUsers(): void{
     this.enrolledUsers$ = this.affairService.getEnrolledForAffairUsers(this.affairId);
-    // this.affairService.getEnrolledForAffairUsers(this.affairId).subscribe({
-    //   next: responseData => this.enrolledUsers = responseData,
-    //   error: err => console.log(err)
-    // });
   }
 
   onSubmit(): void {
@@ -83,7 +79,7 @@ export class AdminAffairsEditorComponent implements OnInit {
     dataToSend.append('shortDescription', this.affairFormGroup.get('shortDescription').value);
     dataToSend.append('availableSeats', this.affairFormGroup.get('availableSeats').value);
 
-    this.affairService.createOrUpdateNewsById(dataToSend, this.affairId, this.authService.getAuthenticatedUserId()).subscribe(
+    this.affairService.createOrUpdateAffairById(dataToSend, this.affairId, this.authService.getAuthenticatedUserId()).subscribe(
       (response) => {
         this.modalService.dismissAll();
         this.router.navigate(['/admin/affairs']);

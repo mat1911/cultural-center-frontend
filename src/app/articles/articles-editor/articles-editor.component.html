@@ -1,0 +1,66 @@
+<div class="content_title">Edycja artykułu</div>
+<ul class='content list-group mb-5 center'>
+    
+    <p *ngIf="currentArticle && articleId != null" class="font-weight-bold text-right">Utworzył:
+        {{currentArticle.authorName + " " + currentArticle.authorSurname}}</p>
+
+    <li class="list-group-item">
+        <form [formGroup]="articleFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="font-weight-bold" for="title" name="affairTitle">Tytuł</label>
+                <input formControlName="title" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': articleForm.title.touched && articleForm.title.errors != null }" id="title"
+                    placeholder="Wprowadź tytuł" required>
+
+                <div *ngIf="articleForm.title.touched && articleForm.title.errors != null" class="invalid-feedback">
+                    Tytuł powinien zawierać minimum 3 znaki!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="content">Treść</label>
+                <textarea formControlName="content" type="text" class="form-control" rows="30"
+                    id="content" maxlength="5000" placeholder="Wprowadź treść artykułu (max 5000 znaków)"
+                    [ngClass]="{ 'is-invalid': articleForm.content.touched && articleForm.content.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="articleForm.content.touched && articleForm.content.errors != null"
+                    class="invalid-feedback">
+                    Treść powinna zostać uzupełniona!
+                </div>
+
+                <p class="font-weight-bold text-right mt-2">Pozostała ilość znaków: {{5000 - articleForm.content.value.length}}</p>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="fileInput">Dodaj obrazek [*.jpg lub *.png lub *.jpeg]</label>
+                <input (change)="onFileChange($event)" type="file" class="form-control-file" id="fileInput"
+                    [ngClass]="{ 'is-invalid': articleForm.picture.touched && articleForm.picture.errors != null }"
+                    required>
+
+                <div *ngIf="articleForm.picture.touched && articleForm.picture.errors != null" class="invalid-feedback">
+                    Akceptowalne formaty to jpg, png oraz jpeg. Rozmiar pliku nie może przekraczać 90KB.
+                </div>
+            </div>
+
+            <div class="d-flex align-content-center">
+                <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+                <button *ngIf="articleId" (click)="deletingModal.openModal()" type="button"
+                    class="btn btn-danger ml-5 mt-5">Usuń</button>
+            </div>
+        </form>
+    </li>
+</ul>
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+
+<app-modal #deletingModal (okClicked)="deleteArticle()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć tę aktualizację?</p>
+</app-modal>

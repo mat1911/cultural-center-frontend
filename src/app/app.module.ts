@@ -11,9 +11,9 @@ import { NewsModule } from './news/news.module';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorsInterceptor } from './shared/http-errors.interceptor';
 import { AffairsModule } from './affairs/affairs.module';
-import { RegisterFormComponent } from './forms/register-form/register-form.component';
 import { SharedModule } from './shared/shared.module';
 import { MyFormsModule } from './forms/forms.module';
+import { ArticlesModule } from './articles/articles.module'
 import { JwtInterceptor } from './shared/jwt.interceptor';
 
 
@@ -30,6 +30,7 @@ import { JwtInterceptor } from './shared/jwt.interceptor';
     HttpClientModule,
     NewsModule,
     AffairsModule,
+    ArticlesModule,
     MyFormsModule,
     NgbModule,
     SharedModule,

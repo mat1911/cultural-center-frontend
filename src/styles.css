@@ -70,3 +70,23 @@
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
+
+.center{
+  margin-left: 8vh;
+  margin-right: 8vh;
+}
+
+.picture_area{
+  background-image: url('https://cdn.pixabay.com/photo/2018/11/16/08/29/dawn-3818968_960_720.jpg'); 
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0, 0.85), 6px 11px 32px 2px rgba(0,0,0,0.75);
+}
+
+.picture_area img{
+  display: block;
+  margin: auto;
+  max-height: 50vh;
+  min-width: 60%;
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}

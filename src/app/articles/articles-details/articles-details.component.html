@@ -1,0 +1,23 @@
+<div *ngIf="currentArticle" class="picture_area">
+  <img [src]="currentArticle.pictureUrl" alt="Brak obrazka :(" />
+</div>
+
+<div class="content_title">{{currentArticle?.title}}</div>
+
+<div *ngIf="currentArticle" class="d-flex center justify-content-between">
+  <button *ngIf="currentArticle.authorId == authService.getAuthenticatedUserId()" [routerLink]="['/articles/edit', currentArticle.id]" class="btn btn-dark mb-2" style="width: 10vw">Edytuj</button>
+  <p class="font-weight-bold align-self-end">Autor:
+    {{currentArticle.authorName + ' ' + currentArticle.authorSurname}}</p>
+</div>
+
+
+<ul class='list-group mb-5'>
+  <li class="page_content list-group-item d-flex">
+    <div class="news_description align-self-center w-100">
+      <ngb-rating *ngIf="currentArticle"  class="text-left" max=5 [rate]="currentArticle.rate" (rateChange)="addNewArticleRate($event)">
+      </ngb-rating>
+      <p class="text-right font-weight-bold">{{currentArticle?.sinceDate}}</p>
+      <p style="white-space: pre-wrap;" class="">{{currentArticle?.content}}</p>
+    </div>
+  </li>
+</ul>

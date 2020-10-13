@@ -6,13 +6,11 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        NgbModule,
         RouterModule.forChild([
             { path: 'news', component: NewsListComponent },
             { path: 'news/:id', component: NewsDetailsComponent },

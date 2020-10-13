@@ -15,7 +15,7 @@ export class AffairService {
 
   constructor(private http: HttpClient) { }
 
-  createOrUpdateNewsById(affairToUpdate: FormData, affairId: number, userId: number){
+  createOrUpdateAffairById(affairToUpdate: FormData, affairId: number, userId: number){
     const options = {params: new HttpParams().set('ownerId', userId.toString())};
     if (affairId){return this.http.put(this.adminAffairsUrl + '/' + affairId, affairToUpdate);}
     return this.http.post(this.adminAffairsUrl, affairToUpdate, options);
@@ -53,13 +53,6 @@ export class AffairService {
        catchError(this.handleError)
     );
   }
-
-  // enrollUser(affairId: number, userId: number): Observable<number>{
-  //   const options = {params: new HttpParams().set('userId', userId.toString())};
-  //   return this.http.patch<number>(this.affairsUrl + "/enroll/" + affairId, null, options).pipe(
-  //      catchError(this.handleError)
-  //   );
-  // }
 
   enrollUsers(affairId: number, userIds: number[]): Observable<number>{
     return this.http.patch<number>(this.affairsUrl + "/enroll/" + affairId, userIds).pipe(

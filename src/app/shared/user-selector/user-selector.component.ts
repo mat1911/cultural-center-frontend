@@ -16,7 +16,6 @@ export class UserSelectorComponent implements OnInit {
   collectionSize: number;
   page: number = 1;
   pageSize: number = 10;
-  filter: string = '';
 
   constructor(private userService: UserService) { }
 
@@ -24,10 +23,9 @@ export class UserSelectorComponent implements OnInit {
     this.loadUsersPage();
   }
 
-  loadUsersPage(): void{
-    console.log("TAK")
-    console.log(this.filter);
-    this.userService.getUsers(this.page, this.pageSize, this.filter).subscribe({
+  loadUsersPage(filterKeyword: string = ''): void{
+    console.log(filterKeyword);
+    this.userService.getUsers(this.page, this.pageSize, filterKeyword).subscribe({
       next: responseData => {
         this.users = responseData.data;
         this.collectionSize = responseData.fullContentSize;

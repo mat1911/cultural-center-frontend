@@ -1,8 +1,5 @@
 <div>
-    <div class="form-inline w-100">
-        <input class="form-control" style="width: 95%;" [(ngModel)]="filter" type="text" placeholder="Wprowadź słowo kluczowe..." />
-        <button (click)="loadUsersPage()" class="btn btn-secondary" style="width: 5%;"><i class="fa fa-search"></i></button>
-    </div>
+    <app-search-bar (search)="loadUsersPage($event)"></app-search-bar>
 
     <table class="table table-bordered mb-5">
         <thead>

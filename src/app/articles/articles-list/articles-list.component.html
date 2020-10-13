@@ -1,0 +1,21 @@
+<div class="content_title mb-4">Artykuły</div>
+<div class="center d-flex">
+    <button (click)="showArticleEditor()" class="btn btn-dark mb-4 mr-2" style="width: 20vw;">Napisz swój artykuł!</button>
+    <app-search-bar (search)="loadArticlesPage($event)" style="width: 80vw;"></app-search-bar>
+</div>
+<ul class='list-group mb-5' *ngIf='articleList && articleList.length'>
+    <li class="page_content list-group-item d-flex align-items-center" *ngFor='let article of articleList'>
+        <div style="background-color: black;"><a [routerLink]="['/articles', article.id]"><img [src]='article.pictureUrl' [title]='article.title' alt='...'
+                    class="img-thumbnail"></a></div>
+        <div class="description w-100">
+            <ngb-rating max=5 [rate]="article.rate"  (rateChange)="addNewArticleRate($event, article.id)"  ></ngb-rating>
+            <p class="text-right font-weight-bold">{{article.sinceDate}}</p>
+            <h4 class="font-weight-bold text-center text-break mb-5">{{article.title}}</h4>
+            <a class="btn btn-dark" role="button" [routerLink]="['/articles', article.id]">Czytaj</a>
+        </div>
+    </li>
+    <div class="d-flex justify-content-center mt-5">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+            [collectionSize]="collectionSize"></ngb-pagination>
+    </div>
+</ul>
