@@ -13,7 +13,8 @@ import { HttpErrorsInterceptor } from './shared/http-errors.interceptor';
 import { AffairsModule } from './affairs/affairs.module';
 import { SharedModule } from './shared/shared.module';
 import { MyFormsModule } from './forms/forms.module';
-import { ArticlesModule } from './articles/articles.module'
+import { ArticlesModule } from './articles/articles.module';
+import { CompetitionsModule } from './competitions/competitions.module';
 import { JwtInterceptor } from './shared/jwt.interceptor';
 
 
@@ -31,6 +32,7 @@ import { JwtInterceptor } from './shared/jwt.interceptor';
     NewsModule,
     AffairsModule,
     ArticlesModule,
+    CompetitionsModule,
     MyFormsModule,
     NgbModule,
     SharedModule,

@@ -1,0 +1,16 @@
+<div class="content_title mb-4">{{'Uczestnik: ' + currentContestant?.userName + ' ' + currentContestant?.userSurname}}</div>
+
+<div *ngIf="currentContestant" class="page_content list-group-item mb-5">
+    <h5 class="font-weight-bold text-center">Od autora:</h5>
+    <p style="white-space: pre-wrap;">{{currentContestant?.userComment}}</p>
+
+    <a *ngIf="currentContestant.resultUrl" [href]="currentContestant.resultUrl">Zobacz pracę uczestnika</a>
+
+    <div class="d-flex justify-content-center mt-5 mb-3">
+        <button (click)="voteForContestant()" class="btn btn-dark text-center">Oddaj głos!</button>
+    </div>
+</div>
+
+<div *ngIf="!currentContestant" class="page_content list-group-item mb-5">
+    <h4 class="text-center">Brak danych</h4>
+</div>

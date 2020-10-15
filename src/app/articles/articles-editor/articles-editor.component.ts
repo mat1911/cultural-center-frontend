@@ -19,10 +19,6 @@ export class ArticlesEditorComponent implements OnInit {
   articleFormGroup: FormGroup;
   currentArticle: IArticle;
 
-  modalTitle: string;
-  modalSubtitle: string;
-  modalDescription: string;
-
   constructor(private route: ActivatedRoute, private articleService: ArticleService, private formBuilder: FormBuilder, private router: Router,
     private modalService: NgbModal, private validatorsService: ValidatorsService, private authService: AuthService, private notificationService: NotificationService) {
     this.articleFormGroup = this.formBuilder.group({

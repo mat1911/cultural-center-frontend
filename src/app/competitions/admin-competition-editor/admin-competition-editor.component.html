@@ -1,0 +1,68 @@
+<div class="content_title">Edycja konkursu</div>
+<ul class='content list-group mb-5'>
+    <li class="list-group-item">
+        <form [formGroup]="competitionFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="font-weight-bold" for="title" name="affairTitle">Tytuł</label>
+                <input formControlName="title" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': competitionForm.title.touched && competitionForm.title.errors != null }" id="title"
+                    placeholder="Wprowadź tytuł" required>
+
+                <div *ngIf="competitionForm.title.touched && competitionForm.title.errors != null" class="invalid-feedback">
+                    Tytuł powinien zawierać minimum 3 znaki!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="description">Opis</label>
+                <textarea formControlName="description" type="text" class="form-control" rows="10"
+                    id="description" maxlength="3000" placeholder="Wprowadź opis (max 3000 znaków)"
+                    [ngClass]="{ 'is-invalid': competitionForm.description.touched && competitionForm.description.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="competitionForm.description.touched && competitionForm.description.errors != null"
+                    class="invalid-feedback">
+                    Opis powinien zawierać minimum 3 znaki!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="fileInput">Dodaj obrazek [*.jpg lub *.png lub *.jpeg]</label>
+                <input (change)="onFileChange($event)" type="file" class="form-control-file" id="fileInput"
+                    [ngClass]="{ 'is-invalid': competitionForm.picture.touched && competitionForm.picture.errors != null }"
+                    required>
+
+                <div *ngIf="competitionForm.picture.touched && competitionForm.picture.errors != null" class="invalid-feedback">
+                    Akceptowalne formaty to jpg, png oraz jpeg. Rozmiar pliku nie może przekraczać 90KB.
+                </div>
+            </div>
+
+            <div class="d-flex align-content-center">
+                <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+                <button *ngIf="competitionId" (click)="deletingModal.openModal()" type="button"
+                    class="btn btn-danger ml-5 mt-5">Usuń</button>
+            </div>
+        </form>
+    </li>
+</ul>
+
+
+<div class="content">
+    <app-admin-accepted-contestants-list [competitionId]="competitionId" ></app-admin-accepted-contestants-list>
+</div>
+
+<div class="content">
+    <app-admin-not-accepted-contestants-list [competitionId]="competitionId" ></app-admin-not-accepted-contestants-list>
+</div>
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+<app-modal #deletingModal (okClicked)="deleteCompetition()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć tę aktualizację?</p>
+</app-modal>

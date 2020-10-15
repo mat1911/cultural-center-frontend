@@ -1,0 +1,42 @@
+<div class="content_title">Zgłoszenie do konkursu</div>
+<ul class='list-group mb-5 center'>
+    <li class="list-group-item">
+        <form [formGroup]="competitionFormGroup" (ngSubmit)="confirmModal.openModal()" enctype="multipart/form-data">
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="userComment">Komentarz autora</label>
+                <textarea formControlName="userComment" type="text" class="form-control" rows="15" id="userComment"
+                    maxlength="3000" placeholder="Wprowadź treść artykułu (max 3000 znaków)"
+                    [ngClass]="{ 'is-invalid': competitionForm.userComment.touched && competitionForm.userComment.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="competitionForm.userComment.touched && competitionForm.userComment.errors != null"
+                    class="invalid-feedback">
+                    Komentarz powinien zostać uzupełniony!
+                </div>
+
+                <p class="font-weight-bold text-right mt-2">Pozostała ilość znaków:
+                    {{3000 - competitionForm.userComment.value.length}}</p>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="userFile">Dodaj plik [*.pdf lub *.docx]</label>
+                <input (change)="onFileChange($event)" type="file" class="form-control-file" id="userFile"
+                    [ngClass]="{ 'is-invalid': competitionForm.userFile.touched && competitionForm.userFile.errors != null }"
+                    required>
+
+                <div *ngIf="competitionForm.userFile.touched && competitionForm.userFile.errors != null"
+                    class="invalid-feedback">
+                    Akceptowalne formaty to docx oraz pdf. Rozmiar pliku nie może przekraczać 1MB.
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+        </form>
+    </li>
+</ul>
+
+<app-modal #confirmModal (okClicked)="onSubmit()"  [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz dodać swoją pracę?</p>
+    <p>Jeśli formularz nie zawiera błędów, praca zostanie przekazana administratorowi do akceptacji.</p>
+    <p class="font-weight-bold" style="color: red;">Po dodaniu nie będzie możliwości edycji pracy!</p>
+</app-modal>

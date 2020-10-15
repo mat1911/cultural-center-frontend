@@ -1,0 +1,28 @@
+<div>
+    <app-search-bar (search)="loadContestantsData($event)"></app-search-bar>
+
+    <table class="table table-bordered mb-5">
+        <thead>
+            <th colspan="8" class="text-center table-dark">UCZESTNICY</th>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Imie</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">Liczba głosów</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contestant of contestantList; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{contestant.userName}}</td>
+                <td>{{contestant.userSurname}}</td>
+                <td>{{contestant.votesNumber}}</td>
+                <td class="d-flex align-content-center justify-content-center"><button [routerLink]="['/contestant/result', competitionId, contestant.userId]" class="btn btn-dark">Obejrzyj pracę</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-5">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="loadContestantsData()" [collectionSize]="collectionSize" ></ngb-pagination>
+    </div>
+</div>

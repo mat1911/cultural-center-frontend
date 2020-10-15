@@ -22,10 +22,6 @@ export class AdminAffairsEditorComponent implements OnInit {
   selectedUserId: number;
   enrolledUsers$: Observable<IEnrolledUser[]>;
 
-  modalTitle: string;
-  modalSubtitle: string;
-  modalDescription: string;
-
   showUsersTable: boolean = false;
 
   constructor(private route: ActivatedRoute, private affairService: AffairService, private formBuilder: FormBuilder, private router: Router,
