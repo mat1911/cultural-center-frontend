@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/core/auth.service';
 import { ValidatorsService } from 'src/app/core/validators.service';
 import { ICompetition } from '../shared/competition';
 import { CompetitionsService } from '../shared/competitions.service';
@@ -19,7 +18,7 @@ export class AdminCompetitionEditorComponent implements OnInit {
   currentCompetition: ICompetition;
 
   constructor(private route: ActivatedRoute, private competitionService: CompetitionsService, private formBuilder: FormBuilder, private router: Router,
-    private modalService: NgbModal, private validatorsService: ValidatorsService, private authService: AuthService) {
+    private modalService: NgbModal, private validatorsService: ValidatorsService) {
     this.competitionFormGroup = this.formBuilder.group({
       title: new FormControl('', [Validators.minLength(3)]),
       description: new FormControl('', [Validators.minLength(3)]),

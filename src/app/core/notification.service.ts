@@ -13,5 +13,6 @@ export class NotificationService {
 
   dispatch(INotification): void{
     this.notification.next(INotification);
+    window.scroll(0, 0);
   }
 }

@@ -1,0 +1,12 @@
+<div class="content_title">{{currentApplication.applicantName + ' ' + currentApplication.applicantSurname}}</div>
+
+<div class="content list-group-item">
+    <p class="font-weight-bold text-right" id="sinceDate">{{currentApplication.sinceDate}}</p>
+
+    <label class="font-weight-bold" for="userComment">Komentarz kandydata:</label>
+    <p style="white-space: pre-wrap;" id="userComment">{{currentApplication.userComment}}</p>
+
+    <label class="font-weight-bold" for="userFileUrl">Plik przesłany przez użytkownika:</label>
+    <a *ngIf="currentApplication && currentApplication.userFileUrl" [href]="currentApplication.userFileUrl"><p id="userFileUrl">Plik użytkownika</p></a>
+
+</div>

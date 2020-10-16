@@ -1,0 +1,33 @@
+<div class="content_title">OFERTY PRACY</div>
+<div class="content">
+    <app-search-bar (search)="loadJobOffersPage($event)" ></app-search-bar>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Stanowisko</th>
+        <th scope="col">Część etatu</th>
+        <th scope="col">Liczba aplikacji</th>
+        <th scope="col">Data dodania</th>
+        <th scope="col"></th>
+        <th scope="col"><a [routerLink]="['/admin/careers/new']" class="btn btn-danger">Dodaj</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jobOffer of jobOffersList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{jobOffer.name}}</td>
+        <td>{{jobOffer.workingHours}}</td>
+        <td>{{jobOffer.numberOfApplications}}</td>
+        <td>{{jobOffer.sinceDate}}</td>
+        <td><a [routerLink]="['/admin/careers', jobOffer.id]" class="btn btn-dark">Edytuj</a></td>
+        <td><a routerLink="/admin/careers/{{jobOffer.id}}/applicants" class="btn btn-dark">Zobacz aplikacje</a></td>
+      </tr>
+      <tr *ngIf="!jobOffersList || !jobOffersList.length" class="text-center"><th colspan="7">BRAK OFERT PRACY</th></tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+      [collectionSize]="collectionSize"></ngb-pagination>
+  </div>
+</div>

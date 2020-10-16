@@ -19,10 +19,6 @@ export class AdminNewsEditorComponent implements OnInit {
   errorMessage: string;
   submitted: boolean = false;
 
-  modalTitle: string;
-  modalSubtitle: string;
-  modalDescription: string;
-
   constructor(private route: ActivatedRoute, private newsService: NewsService, private formBuilder: FormBuilder, private router: Router,
     private modalService: NgbModal, private validatorService: ValidatorsService) {
     this.newsFormGroup = this.formBuilder.group({

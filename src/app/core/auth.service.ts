@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   getAuthenticatedUserId(): number{
-    return this.tokenService.getUserId();
+    return this.tokenService.getUserId() ? this.tokenService.getUserId() : -1;
   } 
 
   userSessionExpires(): boolean{

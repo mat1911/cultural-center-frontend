@@ -1,0 +1,15 @@
+<div class="content_title">{{currentJobOffer.name}}</div>
+
+<div class="content list-group-item">
+    <p class="font-weight-bold text-right" id="sinceDate">{{currentJobOffer.sinceDate}}</p>
+
+    <label class="font-weight-bold" for="workingHours">Wymiar etatu:</label>
+    <p id="workingHours">{{currentJobOffer.workingHours}}</p>
+
+    <label class="font-weight-bold" for="description">Opis stanowiska:</label>
+    <p style="white-space: pre-wrap;" id="description">{{currentJobOffer.description}}</p>
+
+    <div class="d-flex justify-content-center mt-5">
+        <button (click)="showNewApplicantPage()" class="btn btn-dark" style="width: 10vw">Aplikuj!</button>
+    </div>
+</div>

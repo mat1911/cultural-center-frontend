@@ -1,0 +1,30 @@
+<div class="content_title">APLIKACJE</div>
+<div class="content">
+    <app-search-bar (search)="loadApplicaitonsPage($event)" ></app-search-bar>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Imie</th>
+        <th scope="col">Nazwisko</th>
+        <th scope="col">Data dodania</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let application of applicationList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{application.applicantName}}</td>
+        <td>{{application.applicantSurname}}</td>
+        <td>{{application.sinceDate}}</td>
+        <td><a routerLink="/admin/careers/{{jobOfferId}}/applicants/{{application.userId}}" class="btn btn-dark">Zobacz</a></td>
+        <td><a (click)="removeApplication(application.userId)" class="btn btn-danger">Usuń</a></td>
+      </tr>
+      <tr *ngIf="!applicationList || !applicationList.length" class="text-center"><th colspan="7">BRAK APLIKACJI</th></tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+      [collectionSize]="collectionSize"></ngb-pagination>
+  </div>
+</div>

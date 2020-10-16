@@ -1,0 +1,64 @@
+<div class="content_title">Edycja oferty pracy</div>
+<ul class='page_content list-group mb-5'>
+    <li class="list-group-item">
+        <form [formGroup]="jobOfferFormGroup" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="font-weight-bold" for="name" name="jobOfferName">Stanowisko</label>
+                <input formControlName="name" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': jobOfferForm.name.touched && jobOfferForm.name.errors != null }"
+                    id="name" placeholder="Wprowadź nazwę stanowiska" required>
+
+                <div *ngIf="jobOfferForm.name.touched && jobOfferForm.name.errors != null" class="invalid-feedback">
+                    Nazwa stanowiska powinna zostać podana!
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="font-weight-bold" for="workingHours" name="jobOfferName">Wymiar etatu</label>
+                <input formControlName="workingHours" type="text" class="form-control"
+                    [ngClass]="{ 'is-invalid': jobOfferForm.workingHours.touched && jobOfferForm.workingHours.errors != null }"
+                    id="workingHours" placeholder="Wprowadź wymiar etatu" required>
+
+                <div *ngIf="jobOfferForm.workingHours.touched && jobOfferForm.workingHours.errors != null"
+                    class="invalid-feedback">
+                    Wymair etatu powinien zostać podany!
+                </div>
+            </div>
+
+            <div class="form-group pt-3">
+                <label class="font-weight-bold" for="description">Opis stanowiska</label>
+                <textarea formControlName="description" type="text" class="form-control" rows="25" id="description"
+                    maxlength="5000" placeholder="Wprowadź opis stanowiska (max 5000 znaków)"
+                    [ngClass]="{ 'is-invalid': jobOfferForm.description.touched && jobOfferForm.description.errors != null }"
+                    required></textarea>
+
+                <div *ngIf="jobOfferForm.description.touched && jobOfferForm.description.errors != null"
+                    class="invalid-feedback">
+                    Opis stanowiska powinien zostać podany!
+                </div>
+
+                <p class="font-weight-bold text-right mt-2">Pozostała ilość znaków:
+                    {{5000 - jobOfferForm.description.value.length}}</p>
+            </div>
+
+            <div class="d-flex align-description-center">
+                <button (click)="loadingModal.openModal()" type="submit" class="btn btn-primary mt-5">Zatwierdź</button>
+                <button *ngIf="jobOfferId" (click)="deletingModal.openModal()" type="button"
+                    class="btn btn-danger ml-5 mt-5">Usuń</button>
+            </div>
+        </form>
+    </li>
+</ul>
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-description-center align-description-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+
+<app-modal #deletingModal (okClicked)="deleteJobOffer()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć tę aktualizację?</p>
+</app-modal>

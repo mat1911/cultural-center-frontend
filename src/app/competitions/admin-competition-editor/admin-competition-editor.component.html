@@ -47,11 +47,11 @@
 </ul>
 
 
-<div class="content">
+<div *ngIf="competitionId" class="content">
     <app-admin-accepted-contestants-list [competitionId]="competitionId" ></app-admin-accepted-contestants-list>
 </div>
 
-<div class="content">
+<div *ngIf="competitionId" class="content">
     <app-admin-not-accepted-contestants-list [competitionId]="competitionId" ></app-admin-not-accepted-contestants-list>
 </div>
 
