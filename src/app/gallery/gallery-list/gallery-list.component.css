@@ -1,0 +1,21 @@
+
+.fullscrren{
+    position: fixed;
+    box-sizing: border-box;
+    left: 0px;
+    top: 0px; 
+    right: 0px; 
+    bottom: 0px; 
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow: auto;
+    color: rgb(232, 232, 232);
+    z-index: 10000000000000;
+}
+
+.fullscrren img{
+    max-width: 60%;
+    max-height: 70%;
+    margin: auto;
+}

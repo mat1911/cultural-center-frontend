@@ -17,6 +17,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { CompetitionsModule } from './competitions/competitions.module';
 import { CareerModule } from './career/career.module'
 import { JwtInterceptor } from './shared/jwt.interceptor';
+import { GalleryModule } from './gallery/gallery.module';
 
 
 
@@ -35,6 +36,7 @@ import { JwtInterceptor } from './shared/jwt.interceptor';
     ArticlesModule,
     CompetitionsModule,
     CareerModule,
+    GalleryModule,
     MyFormsModule,
     NgbModule,
     SharedModule,

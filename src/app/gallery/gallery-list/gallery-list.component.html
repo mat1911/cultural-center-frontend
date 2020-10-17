@@ -1,0 +1,25 @@
+<div class="content_title">GALERIA</div>
+
+<div class="page_content mb-5">
+    <div class="d-flex justify-content-between flex-wrap" *ngIf="galleryList && galleryList.length">
+        <div class="card" *ngFor="let picture of galleryList">
+            <a style="cursor: pointer;" (click)="selectedPictureUrl=picture.pictureUrl">
+                <img class="card-img-top" [src]="picture.pictureUrl" style="width: 25vw;">
+            </a>
+        </div>
+    </div>
+
+    <div class="list-group-item" *ngIf="!galleryList || !galleryList.length">
+        <h4 class="text-center">Galeria jest pusta!</h4>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="loadGalleryList()"
+        [collectionSize]="collectionSize"></ngb-pagination>
+</div>
+
+
+<div (click)="selectedPictureUrl=null" class="d-flex justify-content-center align-content-center" [ngClass]="{'fullscrren': selectedPictureUrl}">
+    <img [src]="selectedPictureUrl">
+</div>

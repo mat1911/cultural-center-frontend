@@ -1,0 +1,57 @@
+<div class="content_title">GALERIA</div>
+<div class="content">
+
+  <div class="list-group-item mb-5">
+    <form [formGroup]="galleryFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-group pt-3">
+            <label class="font-weight-bold" for="picture">Dodaj obrazek [*.jpg lub *.png lub *.jpeg]</label>
+            <input (change)="onFileChange($event)" type="file" class="form-control-file" id="picture"
+                [ngClass]="{ 'is-invalid': galleryForm.picture.touched && galleryForm.picture.errors != null }"
+                required>
+
+            <div *ngIf="galleryForm.picture.touched && galleryForm.picture.errors != null" class="invalid-feedback">
+                Akceptowalne formaty to jpg, png oraz jpeg. Rozmiar pliku nie może przekraczać 90KB.
+            </div>
+        </div>
+
+        <button (click)="loadingModal.openModal()" style="width: 10vw;" class="btn btn-primary mt-1" type="submit">Dodaj</button>
+    </form>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Obrazek</th>
+        <th scope="col">Data dodania</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let picture of galleryList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td><img [src]="picture.pictureUrl" width="100px"></td>
+        <td>{{picture.sinceDate}}</td>
+        <td><a (click)="selectedPictureId=picture.id; deletingModal.openModal()" class="btn btn-danger">Usuń</a></td>
+      </tr>
+      <tr *ngIf="!galleryList || !galleryList.length" class="text-center"><th colspan="4">GALERIA JEST PUSTA</th></tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="loadGalleryList()"
+      [collectionSize]="collectionSize"></ngb-pagination>
+  </div>
+</div>
+
+
+<app-modal #loadingModal [showCloseButton]='false' [showOkButton]='false' [modalTitle]='"Proszę czekać..."'
+    [keyboard]='false' [backdrop]='"static"'>
+    <p>Strona zostanie przeładowana po zakończeniu operacji!</p>
+    <div class="d-flex justify-content-center align-content-start">
+        <div class="text-dark spinner-border mt-5 ml-4" role="status"></div>
+    </div>
+</app-modal>
+
+<app-modal #deletingModal (okClicked)="deletePicture()" [modalTitle]='"UWAGA!"'>
+    <p>Czy na pewno chcesz usunąć ten obrazek?</p>
+</app-modal>
