@@ -1,0 +1,11 @@
+.admin_option{
+    width: 33.33%; 
+    height: 20vh;
+
+}
+
+.admin_button{
+    width: 100%; 
+    height: 100%;
+    font-size: 1.5vw;
+}

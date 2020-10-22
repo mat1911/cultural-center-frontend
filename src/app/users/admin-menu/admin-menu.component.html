@@ -1,0 +1,48 @@
+<div class="content_title mb-4">MENU ADMINISTRATORA</div>
+
+<!-- <div class="page_content mb-5">
+    <div class="d-flex flex-wrap">
+        <div class="card" style="width: 33.33%; height: 20vh;">
+            <div class="card-body">
+                <a class="btn btn-outline-dark font-weight-bold" style="width: 100%; height: 100%;">Zarządzanie aktualnościami</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="page_content mb-5">
+    <div class="row">
+        <div class="admin_option col-4">
+            <button [routerLink]="['/admin/news']" class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                aktualnościami</button>
+        </div>
+
+        <div class="admin_option col-4">
+            <button [routerLink]="['/admin/gallery']" class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                galerią</button>
+        </div>
+
+        <div class="admin_option col-4">
+            <button [routerLink]="['/admin/affairs']" class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                wydarzeniami</button>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div  class="admin_option col-4">
+            <button [routerLink]="['/admin/articles']" class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                artykułami</button>
+        </div>
+
+        <div class="admin_option col-4">
+            <button [routerLink]="['/admin/competitions']" class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                konkursami</button>
+        </div>
+
+        <div [routerLink]="['/admin/careers']" class="admin_option col-4">
+            <button class="btn btn-dark font-weight-bold text-center admin_button" >Zarządzanie
+                karierą</button>
+        </div>
+    </div>
+</div>

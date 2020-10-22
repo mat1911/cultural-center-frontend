@@ -44,6 +44,10 @@ export class AuthService {
     return this.tokenService.hasToken();
   }
 
+  hasRoleAdmin(): boolean{
+    return this.tokenService.hasRoleAdmin();
+  }
+
   getTokens(): ITokens {
     return this.tokenService.getTokens();
   }

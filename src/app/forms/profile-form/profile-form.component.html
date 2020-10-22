@@ -14,7 +14,7 @@
         <label class="mt-3 font-weight-bold" for="name" name="name">Imię</label>
         <input formControlName="name" type="text" class="form-control is-invalid"
             [ngClass]="{ 'is-invalid': profileForm.name.touched && profileForm.name.errors != null }" id="title"
-            placeholder="Wprowadź nazwę swoje imię" required>
+            placeholder="Wprowadź swoje imię" required>
 
         <div *ngIf="profileForm.name.errors != null" class="invalid-feedback">
             Imię musi zawierać minimum 3 znaki!
@@ -25,7 +25,7 @@
         <label class="mt-3 font-weight-bold" for="surname" name="surname">Nazwisko</label>
         <input formControlName="surname" type="text" class="form-control is-invalid"
             [ngClass]="{ 'is-invalid': profileForm.surname.touched && profileForm.surname.errors != null }" id="surname"
-            placeholder="Wprowadź nazwę swoje nazwisko" required>
+            placeholder="Wprowadź swoje nazwisko" required>
 
         <div *ngIf="profileForm.surname.errors != null" class="invalid-feedback">
             Nazwisko musi zawierać minimum 3 znaki!

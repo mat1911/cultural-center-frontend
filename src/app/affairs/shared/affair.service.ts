@@ -32,6 +32,12 @@ export class AffairService {
     );
   }
 
+  getUserAffairs(userId: number): Observable<IAffair[]>{
+    return this.http.get<IAffair[]>(`${this.affairsUrl}/user/${userId}`).pipe(
+       catchError(this.handleError)
+    );
+  }
+
   getAffairToUpdateById(affairId: number): Observable<IAffair>{
     return this.http.get<IAffair>(this.affairsUrl + "/" + affairId).pipe(
       catchError(this.handleError)

@@ -1,0 +1,19 @@
+<div class="content_title mb-4">Dane konta</div>
+
+<p class="font-weight-bold text-center" style="font-size: 0.9vw;">Zadbaj o poprawność poniższych danych. Są one wykorzystywane przy wszelkich rejestracjach na stronie Miejskiego Ośrodka Kultury!</p>
+
+<div class="content mt-2 list-group-item">
+    <p class="font-weight-bold border-bottom pb-3" style="font-size: 1.4vw;">Dane użytkownika</p>
+    <form class="mt-3" [formGroup]="userProfileGroup" (ngSubmit)="updateUserProfile()" >
+        <app-profile-form formControlName="profile"></app-profile-form>
+        <button type="submit" class="btn btn-primary mt-3">Zatwierdź zmiany</button>
+    </form>
+
+
+    <p class="font-weight-bold border-bottom border-top mt-5 pb-3 pt-3" style="font-size: 1.4vw;">Zmiana hasła</p>
+    <form [formGroup]="userProfileGroup" (ngSubmit)="changePassword()">
+        <app-password-form formControlName="password"></app-password-form>
+        <button type="submit" class="btn btn-primary mt-3">Zmień hasło</button>
+    </form>
+
+</div>

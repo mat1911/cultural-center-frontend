@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
 import { TokenService } from 'src/app/core/token.service';
 
@@ -12,7 +13,7 @@ export class LoginFormComponent implements OnInit {
 
   loginFormGroup: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService, private router: Router) {
     this.loginFormGroup = formBuilder.group({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required])
@@ -33,8 +34,14 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
+    console.log(this.loginFormGroup.value)
+
     this.authService.login(this.loginFormGroup.value).subscribe({
-      next: response => this.tokenService.saveTokens(response)
+      next: response => {
+        this.tokenService.saveTokens(response);
+        this.router.navigate(['/news']);
+      },
+      error: err => console.log(err)
     })
   }
 

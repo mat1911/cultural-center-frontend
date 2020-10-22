@@ -18,6 +18,8 @@ import { CompetitionsModule } from './competitions/competitions.module';
 import { CareerModule } from './career/career.module'
 import { JwtInterceptor } from './shared/jwt.interceptor';
 import { GalleryModule } from './gallery/gallery.module';
+import { UserModule } from './users/user.module';
+import { ContactComponent } from './contact/contact.component';
 
 
 
@@ -25,7 +27,8 @@ import { GalleryModule } from './gallery/gallery.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +40,12 @@ import { GalleryModule } from './gallery/gallery.module';
     CompetitionsModule,
     CareerModule,
     GalleryModule,
+    UserModule,
     MyFormsModule,
     NgbModule,
     SharedModule,
     RouterModule.forRoot([
+      { path: 'contact', component: ContactComponent},
       { path: '**', redirectTo: 'news', pathMatch: 'full'}
     ]),
 

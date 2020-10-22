@@ -19,7 +19,12 @@
             <div *ngIf="loginForm.password.errors != null" class="invalid-feedback">
                 Hasło musi być podane!
             </div>
-            <button class="mt-3 btn btn-primary" type="submit">Zaloguj się</button>
+
+
+            <div class="d-flex justify-content-between">
+                <a class="align-self-center" [routerLink]="['/forgot']" style="margin-top: 10px;">Nie pamiętasz hasła?</a>
+                <button class="mt-3 btn btn-primary " type="submit">Zaloguj się</button>
+            </div>
         </form>
     </li>
 </ul>

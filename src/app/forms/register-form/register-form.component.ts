@@ -36,7 +36,7 @@ export class RegisterFormComponent implements OnInit {
         next: response => {
           this.modalService.dismissAll();
           this.router.navigate(['/login'])
-          this.notificationService.dispatch({statusCode: 201, message: 'Utworzono nowe konto!', dismissible: true, type: 'success'})
+          this.notificationService.dispatch({statusCode: 201, message: 'Utworzono nowe konto! Aktywuj je poprzez email podany w formularzu rejestracyjnym.', dismissible: true, type: 'success'})
         },
         error: err => {
           this.modalService.dismissAll();

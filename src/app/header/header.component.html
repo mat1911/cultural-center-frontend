@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between h-100 align-items-center">
         <div class="font-weight-bold" style="color: #CED0D2;">Miejski Ośrodek Kultury</div>
 
-        <div *ngIf = "!authService.isLoggedIn()">
+        <div *ngIf="!authService.isLoggedIn()">
             <button [routerLink]="['/login']" class="btn btn-dark font-weight-bold"
                 style="color: #CED0D2; font-size: 0.8vw;">Zaloguj się</button>
             <button [routerLink]="['/register']" class="btn btn-dark font-weight-bold"
@@ -10,10 +10,18 @@
             </button>
         </div>
 
-        <div *ngIf = "authService.isLoggedIn()">
-            <button [routerLink]="['/login']" class="btn btn-dark font-weight-bold"
-                style="color: #CED0D2; font-size: 0.8vw;">Opcje</button>
-            <button (click)="authService.logout()"  class="btn btn-dark font-weight-bold"
+        <div *ngIf="authService.isLoggedIn()">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-dark font-weight-bold" id="options" ngbDropdownToggle style="color: #CED0D2; font-size: 0.8vw;">Opcje</button>
+                <div ngbDropdownMenu aria-labelledby="options">
+                    <button [routerLink]="['/options', authService.getAuthenticatedUserId()]" ngbDropdownItem>Mój profil</button>
+                    <button routerLink="affairs/user/{{authService.getAuthenticatedUserId()}}" ngbDropdownItem>Moje wydarzenia</button>
+                    <button [routerLink]="['/admin']" *ngIf="authService.hasRoleAdmin()" ngbDropdownItem>Menu administratora</button>
+                </div>
+            </div>
+
+
+            <button (click)="authService.logout()" class="btn btn-dark font-weight-bold"
                 style="border-left: 2px dashed #CED0D2; color: #CED0D2; font-size: 0.8vw;">Wyloguj się
             </button>
         </div>

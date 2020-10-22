@@ -29,7 +29,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     PasswordFormComponent,
     RegisterFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ProfileFormComponent
   ]
 })
 export class MyFormsModule { }
