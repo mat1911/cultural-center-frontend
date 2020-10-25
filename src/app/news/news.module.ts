@@ -6,6 +6,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { RoleGuardService } from '../core/role-guard.service';
 
 @NgModule({
     imports: [
@@ -14,9 +15,9 @@ import { SharedModule } from '../shared/shared.module';
         RouterModule.forChild([
             { path: 'news', component: NewsListComponent },
             { path: 'news/:id', component: NewsDetailsComponent },
-            { path: 'admin/news', component: AdminNewsListComponent },
-            { path: 'admin/news/:id', component: AdminNewsEditorComponent},
-            { path: 'admin/news/new', component: AdminNewsEditorComponent}
+            { path: 'admin/news', component: AdminNewsListComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/news/:id', component: AdminNewsEditorComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/news/new', component: AdminNewsEditorComponent, canActivate: [RoleGuardService] }
         ])
     ],
     declarations: [

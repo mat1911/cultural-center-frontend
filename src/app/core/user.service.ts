@@ -11,7 +11,6 @@ import { IUser } from '../shared/User';
 })
 export class UserService {
   private usersUrl = 'http://localhost:8080/users';
-  private adminUsersUrl = 'http://localhost:8080/admin/users';
   private securityUrl = 'http://localhost:8080/security';
 
   constructor(private http: HttpClient) { }
@@ -22,7 +21,7 @@ export class UserService {
           .set('pageSize', pageSize.toString())
           .set('filter', filter.toString())};
 
-    return this.http.get<ResponseData<IUser[]>>(this.adminUsersUrl, options).pipe(
+    return this.http.get<ResponseData<IUser[]>>(this.usersUrl, options).pipe(
        catchError(this.handleError)
     );
   }

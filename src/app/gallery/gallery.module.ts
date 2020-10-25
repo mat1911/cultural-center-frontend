@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { GalleryListComponent } from './gallery-list/gallery-list.component';
 import { AdminGalleryListComponent } from './admin-gallery-list/admin-gallery-list.component';
+import { RoleGuardService } from '../core/role-guard.service';
 
 @NgModule({
     imports: [
@@ -11,7 +12,7 @@ import { AdminGalleryListComponent } from './admin-gallery-list/admin-gallery-li
         SharedModule,
         RouterModule.forChild([
             { path: 'gallery', component: GalleryListComponent },
-            { path: 'admin/gallery', component: AdminGalleryListComponent }
+            { path: 'admin/gallery', component: AdminGalleryListComponent, canActivate: [RoleGuardService] }
         ])
     ],
     declarations: [

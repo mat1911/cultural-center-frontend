@@ -1,7 +1,8 @@
 <div class="content_title">Edycja wydarzenia</div>
 <ul class='content list-group mb-5'>
-    <p *ngIf="affairId != null" class="font-weight-bold text-right">Utworzył:
+    <p *ngIf="currentAffair && affairId" class="font-weight-bold text-right">Utworzył:
         {{currentAffair.ownerName + " " + currentAffair.ownerSurname}}</p>
+        
     <li class="list-group-item">
         <form [formGroup]="affairFormGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="form-group">

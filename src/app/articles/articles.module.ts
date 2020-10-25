@@ -8,6 +8,7 @@ import { ArticlesEditorComponent } from './articles-editor/articles-editor.compo
 import { AdminAcceptedArticlesListComponent } from './admin-accepted-articles-list/admin-accepted-articles-list.component';
 import { AdminArticleManagerComponent } from './admin-article-manager/admin-article-manager.component';
 import { AdminNotAcceptedArticlesListComponent } from './admin-not-accepted-articles-list/admin-not-accepted-articles-list.component';
+import { RoleGuardService } from '../core/role-guard.service';
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import { AdminNotAcceptedArticlesListComponent } from './admin-not-accepted-arti
             { path: 'articles/new', component: ArticlesEditorComponent },
             { path: 'articles/:id', component: ArticlesDetailsComponent},
             { path: 'articles/edit/:id', component: ArticlesEditorComponent },
-            { path: 'admin/articles', component: AdminArticleManagerComponent }
+            { path: 'admin/articles', component: AdminArticleManagerComponent, canActivate: [RoleGuardService]}
         ])
     ],
     declarations: [

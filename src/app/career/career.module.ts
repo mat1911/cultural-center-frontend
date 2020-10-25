@@ -9,6 +9,7 @@ import { JobOffersListComponent } from './job-offers-list/job-offers-list.compon
 import { JobOfferDetailsComponent } from './job-offer-details/job-offer-details.component';
 import { ApplicantEditorComponent } from './applicant-editor/applicant-editor.component';
 import { AdminApplicantDetailsComponent } from './admin-applicant-details/admin-applicant-details.component';
+import { RoleGuardService } from '../core/role-guard.service';
 
 @NgModule({
     imports: [
@@ -18,11 +19,11 @@ import { AdminApplicantDetailsComponent } from './admin-applicant-details/admin-
             { path: 'careers', component: JobOffersListComponent },
             { path: 'careers/:id', component: JobOfferDetailsComponent },
             { path: 'careers/:id/applicant/new', component: ApplicantEditorComponent },
-            { path: 'admin/careers', component: AdminJobOffersListComponent },
-            { path: 'admin/careers/:id', component: AdminJobOfferEditorComponent },
-            { path: 'admin/careers/new', component: AdminJobOfferEditorComponent },
-            { path: 'admin/careers/:id/applicants', component: AdminApplicationListComponent },
-            { path: 'admin/careers/:jobOfferId/applicants/:applicantId', component: AdminApplicantDetailsComponent }
+            { path: 'admin/careers', component: AdminJobOffersListComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/careers/:id', component: AdminJobOfferEditorComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/careers/new', component: AdminJobOfferEditorComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/careers/:id/applicants', component: AdminApplicationListComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/careers/:jobOfferId/applicants/:applicantId', component: AdminApplicantDetailsComponent, canActivate: [RoleGuardService] }
         ])
     ],
     declarations: [

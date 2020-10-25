@@ -11,7 +11,6 @@ import { IArticle } from './article';
 export class ArticleService {
 
   private articlesUrl = 'http://localhost:8080/articles';
-  private adminArticlesUrl = 'http://localhost:8080/admin/articles';
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +36,7 @@ export class ArticleService {
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())};
 
-    return this.http.get<ResponseData<IArticle[]>>(this.adminArticlesUrl, options).pipe(
+    return this.http.get<ResponseData<IArticle[]>>(this.articlesUrl + "/not-accepted", options).pipe(
        catchError(this.handleError)
     );
   }
@@ -57,7 +56,7 @@ export class ArticleService {
 
   changeArticleAcceptance(articleId: number, isAccepted: boolean){
     const options = {params: new HttpParams().set('isAccepted', isAccepted.toString())};
-    return this.http.patch<number>(this.adminArticlesUrl + "/" + articleId, null, options).pipe(
+    return this.http.patch<number>(this.articlesUrl + "/" + articleId + "/acceptance", null, options).pipe(
        catchError(this.handleError)
     );
   }

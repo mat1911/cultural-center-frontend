@@ -11,6 +11,7 @@ import { ContestantResultComponent } from './contestant-result/contestant-result
 import { AdminCompetitionEditorComponent } from './admin-competition-editor/admin-competition-editor.component';
 import { AdminAcceptedCompetitionsListComponent } from './admin-accepted-contestants-list/admin-accepted-contestants-list.component';
 import { AdminNotAcceptedContestantsListComponent } from './admin-not-accepted-contestants-list/admin-not-accepted-contestants-list.component';
+import { RoleGuardService } from '../core/role-guard.service';
 
 @NgModule({
     imports: [
@@ -20,10 +21,10 @@ import { AdminNotAcceptedContestantsListComponent } from './admin-not-accepted-c
             { path: 'competitions', component: CompetitionListComponent },
             { path: 'competitions/:id', component: CompetitionDetailsComponent },
             { path: 'competitions/contestant/new/:id', component: CompetitionNewContestantComponent },
-            { path: 'contestant/result/:competitionId/:userId', component: ContestantResultComponent},
-            { path: 'admin/competitions', component: AdminCompetitionListComponent},
-            { path: 'admin/competitions/:id', component: AdminCompetitionEditorComponent },
-            { path: 'admin/competitions/new', component: AdminCompetitionEditorComponent }
+            { path: 'contestant/result/:competitionId/:userId', component: ContestantResultComponent },
+            { path: 'admin/competitions', component: AdminCompetitionListComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/competitions/:id', component: AdminCompetitionEditorComponent, canActivate: [RoleGuardService] },
+            { path: 'admin/competitions/new', component: AdminCompetitionEditorComponent, canActivate: [RoleGuardService] }
         ])
     ],
     declarations: [

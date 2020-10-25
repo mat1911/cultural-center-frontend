@@ -12,13 +12,12 @@ import { IContestant } from './contestant';
 export class CompetitionsService {
 
   private competitionsUrl: string = 'http://localhost:8080/competitions';
-  private competitionsAdminUrl: string = 'http://localhost:8080/admin/competitions';
 
   constructor(private http: HttpClient) { }
 
   createOrUpdateCompetitionById(competitionData: FormData, competitionId: number){
-    if (competitionId){return this.http.put(this.competitionsAdminUrl + '/' + competitionId, competitionData);}
-    return this.http.post(this.competitionsAdminUrl, competitionData);
+    if (competitionId){return this.http.put(this.competitionsUrl + '/' + competitionId, competitionData);}
+    return this.http.post(this.competitionsUrl, competitionData);
   }
 
   createContestant(contestantData: FormData, competitionId: number, userId: number){
@@ -59,7 +58,7 @@ export class CompetitionsService {
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())};
 
-    return this.http.get<ResponseData<IContestant[]>>(`${this.competitionsAdminUrl}/${competitionId}/contestants`, options).pipe(
+    return this.http.get<ResponseData<IContestant[]>>(`${this.competitionsUrl}/${competitionId}/contestants/not-accepted`, options).pipe(
       catchError(this.handleError)
     );
   }
@@ -83,17 +82,17 @@ export class CompetitionsService {
 
   changeContestantAcceptance(competitionId: number, contestantId: number, isAccepted: boolean): Observable<number>{
     const options = {params: new HttpParams().set('isAccepted', isAccepted.toString())};
-    return this.http.patch<number>(`${this.competitionsAdminUrl}/${competitionId}/contestants/${contestantId}`, null, options).pipe(
+    return this.http.patch<number>(`${this.competitionsUrl}/${competitionId}/contestants/${contestantId}`, null, options).pipe(
        catchError(this.handleError)
     );
   }
 
   deleteCompetition(competitionId: number){
-    return this.http.delete(this.competitionsAdminUrl + '/' + competitionId);
+    return this.http.delete(this.competitionsUrl + '/' + competitionId);
   }
 
   deleteContestant(competitionId: number, contestantId: number){
-    return this.http.delete(`${this.competitionsAdminUrl}/${competitionId}/contestants/${contestantId}`);
+    return this.http.delete(`${this.competitionsUrl}/${competitionId}/contestants/${contestantId}`);
   }
 
   private handleError(err: HttpErrorResponse){

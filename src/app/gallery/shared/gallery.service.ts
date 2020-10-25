@@ -10,7 +10,6 @@ import { IGallery } from './gallery';
 })
 export class GalleryService {
   private galleryUrl = 'http://localhost:8080/gallery';
-  private adminGalleryUrl = 'http://localhost:8080/admin/gallery';
 
   constructor(private http: HttpClient) { }
 
@@ -25,13 +24,13 @@ export class GalleryService {
   }
 
   addPicture(pictureData: FormData): Observable<number>{
-    return this.http.post<number>(this.adminGalleryUrl, pictureData).pipe(
+    return this.http.post<number>(this.galleryUrl, pictureData).pipe(
       catchError(this.handleError)
     );
   }
 
   deletePicture(pictureId: number): Observable<number>{
-    return this.http.delete<number>(`${this.adminGalleryUrl}/${pictureId}`).pipe(
+    return this.http.delete<number>(`${this.galleryUrl}/${pictureId}`).pipe(
       catchError(this.handleError)
     )
   }

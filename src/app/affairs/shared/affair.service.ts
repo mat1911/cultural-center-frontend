@@ -17,12 +17,12 @@ export class AffairService {
 
   createOrUpdateAffairById(affairToUpdate: FormData, affairId: number, userId: number){
     const options = {params: new HttpParams().set('ownerId', userId.toString())};
-    if (affairId){return this.http.put(this.adminAffairsUrl + '/' + affairId, affairToUpdate);}
-    return this.http.post(this.adminAffairsUrl, affairToUpdate, options);
+    if (affairId){return this.http.put(`${this.affairsUrl}/${affairId}`, affairToUpdate);}
+    return this.http.post(this.affairsUrl, affairToUpdate, options);
   }
   
   getEnrolledForAffairUsers(affairId: number): Observable<IEnrolledUser[]>{
-    return this.http.get<IEnrolledUser[]>(this.adminAffairsUrl + "/" + affairId);
+    return this.http.get<IEnrolledUser[]>(`${this.affairsUrl}/${affairId}/enrolled`);
   }
 
   getAffairs(pageNumber: number, pageSize: number): Observable<ResponseData<IAffair[]>>{
@@ -45,12 +45,12 @@ export class AffairService {
   }
 
   deleteAffairById(affairId: number){
-    return this.http.delete(this.adminAffairsUrl + '/' + affairId);
+    return this.http.delete(`${this.affairsUrl}/${affairId}`);
   }
 
   delistUserFromAffair(affairId: number, userId: number){
     const options = {params: new HttpParams().set('userId', userId.toString())};
-    return this.http.delete(this.adminAffairsUrl + "/delist/" + affairId, options)
+    return this.http.delete(`${this.affairsUrl}/delist/${affairId}`, options)
   }
 
   updateAffairRating(affairId: number, userId: number, affairRate: number): Observable<number>{

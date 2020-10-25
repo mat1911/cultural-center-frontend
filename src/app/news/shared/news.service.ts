@@ -10,7 +10,6 @@ import { ResponseData } from '../../shared/response_data';
 })
 export class NewsService {
   private newsUrl = 'http://localhost:8080/news';
-  private adminNewsUrl = 'http://localhost:8080/admin/news';
 
   constructor(private http: HttpClient) { }
 
@@ -30,18 +29,18 @@ export class NewsService {
   }
 
   getNewsToUpdateById(newsId:number): Observable<INews>{
-    return this.http.get<INews>(this.adminNewsUrl + '/' + newsId).pipe(
+    return this.http.get<INews>(this.newsUrl + '/edit/' + newsId).pipe(
       catchError(this.handleError)
    );
   }
 
   createOrUpdateNewsById(newsToUpdate: FormData, newsId: number){
-    if (newsId){return this.http.put(this.adminNewsUrl + '/' + newsId, newsToUpdate);}
-    return this.http.post(this.adminNewsUrl, newsToUpdate);
+    if (newsId){return this.http.put(this.newsUrl + '/' + newsId, newsToUpdate);}
+    return this.http.post(this.newsUrl, newsToUpdate);
   }
 
   deleteNewsById(newsId: number){
-    return this.http.delete(this.adminNewsUrl + '/' + newsId);
+    return this.http.delete(this.newsUrl + '/' + newsId);
   }
 
   private handleError(err: HttpErrorResponse){

@@ -11,13 +11,12 @@ import { IJobOffer } from './job-offer';
 })
 export class CareerService {
   private careersUrl = 'http://localhost:8080/careers';
-  private adminCareersUrl = 'http://localhost:8080/admin/careers';
 
   constructor(private http: HttpClient) { }
 
   createOrUpdateJobOfferById(jobOfferToUpdate: FormData, jobOfferId: number){
-    if (jobOfferId){return this.http.put(`${this.adminCareersUrl}/${jobOfferId}`, jobOfferToUpdate);}
-    return this.http.post(this.adminCareersUrl, jobOfferToUpdate);
+    if (jobOfferId){return this.http.put(`${this.careersUrl}/${jobOfferId}`, jobOfferToUpdate);}
+    return this.http.post(this.careersUrl, jobOfferToUpdate);
   }
 
   createApplicant(applicantData: FormData, jobOfferId: number, userId: number): Observable<number>{
@@ -46,13 +45,13 @@ export class CareerService {
       .set('pageSize', pageSize.toString())
       .set('keyword', keyword.toString())};
 
-    return this.http.get<ResponseData<IApplication[]>>(`${this.adminCareersUrl}/${jobOfferid}/applicants`, options).pipe(
+    return this.http.get<ResponseData<IApplication[]>>(`${this.careersUrl}/${jobOfferid}/applicants`, options).pipe(
        catchError(this.handleError)
     );
   }
 
   getApplicant(jobOfferId: number, applicantId: number): Observable<IApplication>{
-    return this.http.get<IApplication>(`${this.adminCareersUrl}/${jobOfferId}/applicants/${applicantId}`).pipe(
+    return this.http.get<IApplication>(`${this.careersUrl}/${jobOfferId}/applicants/${applicantId}`).pipe(
       catchError(this.handleError)
     )
   }
@@ -64,11 +63,11 @@ export class CareerService {
   }
 
   deleteJobOffer(jobOfferId: number){
-    return this.http.delete(`${this.adminCareersUrl}/${jobOfferId}`)
+    return this.http.delete(`${this.careersUrl}/${jobOfferId}`)
   }
 
   deleteApplication(jobOfferId: number, applicantId: number): Observable<number>{
-    return this.http.delete<number>(`${this.adminCareersUrl}/${jobOfferId}/applicants/${applicantId}`);
+    return this.http.delete<number>(`${this.careersUrl}/${jobOfferId}/applicants/${applicantId}`);
   }
 
   private handleError(err: HttpErrorResponse){
