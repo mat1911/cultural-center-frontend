@@ -19,6 +19,11 @@
           <td>{{news.dateOfAdd}}</td>
           <td><a [routerLink]="['/admin/news', news.id]" class="btn btn-dark">Edytuj</a></td>
         </tr>
+
+        <tr *ngIf="!newsList || !newsList.length">
+          <td colspan="5" class="text-center text-muted font-weight-bold">BRAK AKTUALNOŚCI</td>
+        </tr>
+
         </tbody>
       </table>
       <div class = "d-flex justify-content-center mt-5">

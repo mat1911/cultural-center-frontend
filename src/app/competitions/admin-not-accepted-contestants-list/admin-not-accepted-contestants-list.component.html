@@ -19,6 +19,9 @@
           <td class="text-center"><a (click)="acceptModal.openModal(); selectedContestantId = contestant.userId" class="btn btn-dark">Zaakceptuj</a></td>
           <td class="text-center"><a (click)="deleteModal.openModal(); selectedContestantId = contestant.userId" class="btn btn-danger">Usuń</a></td>
         </tr>
+        <tr *ngIf="!notAcceptedContestants || !notAcceptedContestants.length">
+          <td colspan="5" class="text-center text-muted font-weight-bold">BRAK PRAC DO AKCEPTACJI!</td>
+        </tr>
       </tbody>
     </table>
     <div class="d-flex justify-content-center mt-5">

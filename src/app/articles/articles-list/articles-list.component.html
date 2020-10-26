@@ -14,8 +14,13 @@
             <a class="btn btn-dark" role="button" [routerLink]="['/articles', article.id]">Czytaj</a>
         </div>
     </li>
-    <div class="d-flex justify-content-center mt-5">
-        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
-            [collectionSize]="collectionSize"></ngb-pagination>
-    </div>
 </ul>
+
+<div class="page_content list-group-item" *ngIf="!articleList || !articleList.length">
+    <p style="font-size: 1.2vw;" class="text-center text-muted m-auto font-weight-bold">BRAK ARTYKUŁÓW!</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+        [collectionSize]="collectionSize"></ngb-pagination>
+</div>

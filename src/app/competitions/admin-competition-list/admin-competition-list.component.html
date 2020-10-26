@@ -18,6 +18,9 @@
         <td>{{competition.sinceDate}}</td>
         <td><a [routerLink]="['/admin/competitions', competition.id]" class="btn btn-dark">Edytuj</a></td>
       </tr>
+      <tr *ngIf="!competitionList || !competitionList.length">
+        <td colspan="5" class="text-center text-muted font-weight-bold">BRAK KONKURSÓW!</td>
+      </tr>
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">

@@ -34,7 +34,7 @@
         <td>{{picture.sinceDate}}</td>
         <td><a (click)="selectedPictureId=picture.id; deletingModal.openModal()" class="btn btn-danger">Usuń</a></td>
       </tr>
-      <tr *ngIf="!galleryList || !galleryList.length" class="text-center"><th colspan="4">GALERIA JEST PUSTA</th></tr>
+      <tr *ngIf="!galleryList || !galleryList.length" class="text-center text-muted"><th colspan="4">GALERIA JEST PUSTA</th></tr>
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">

@@ -19,6 +19,9 @@
         <td class="text-center"><a (click)="cancelModal.openModal(); selectedArticleId = article.id" class="btn btn-dark">Cofnij akceptację</a></td>
         <td class="text-center"><a (click)="deleteModal.openModal(); selectedArticleId = article.id" class="btn btn-danger">Usuń</a></td>
       </tr>
+      <tr *ngIf="!acceptedArticles || !acceptedArticles.length">
+        <td colspan="6" class="text-center text-muted font-weight-bold">BRAK ZAAKCEPTOWANYCH ARTYKUŁÓW!</td>
+      </tr>
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">

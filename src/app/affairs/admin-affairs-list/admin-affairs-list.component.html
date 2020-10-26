@@ -18,6 +18,11 @@
         <td>{{affair.sinceDate}}</td>
         <td><a [routerLink]="['/admin/affairs', affair.id]" class="btn btn-dark">Edytuj</a></td>
       </tr>
+
+      <tr *ngIf="!affairList || !affairList.length">
+        <td class="text-center text-muted font-weight-bold" colspan="5">BRAK WYDARZEŃ</td>
+      </tr>
+
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">

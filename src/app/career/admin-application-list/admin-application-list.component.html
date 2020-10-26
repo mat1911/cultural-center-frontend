@@ -21,7 +21,7 @@
         <td><a routerLink="/admin/careers/{{jobOfferId}}/applicants/{{application.userId}}" class="btn btn-dark">Zobacz</a></td>
         <td><a (click)="removeApplication(application.userId)" class="btn btn-danger">Usuń</a></td>
       </tr>
-      <tr *ngIf="!applicationList || !applicationList.length" class="text-center"><th colspan="7">BRAK APLIKACJI</th></tr>
+      <tr *ngIf="!applicationList || !applicationList.length" class="text-center text-muted font-weight-bold"><th colspan="7">BRAK APLIKACJI</th></tr>
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">

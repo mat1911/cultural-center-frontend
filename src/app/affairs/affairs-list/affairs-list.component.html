@@ -25,11 +25,16 @@
             <a *ngIf="affair.availableSeats <= 0" class="btn btn-danger disabled" role="button" >Brak miejsc!</a>
         </div>
     </li>
-    <div class="d-flex justify-content-center mt-5">
-        <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
-            [collectionSize]="collectionSize"></ngb-pagination>
-    </div>
 </ul>
+
+<div class="page_content list-group-item" *ngIf="!affairList || !affairList.length">
+    <p style="font-size: 1.2vw;" class="text-center text-muted m-auto font-weight-bold">BRAK WYDARZEŃ!</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" (pageChange)="onPageChanged()"
+        [collectionSize]="collectionSize"></ngb-pagination>
+</div>
 
 <app-modal #enrollModal (okClicked)="enrollToAffair()" [modalTitle]='"Zapis na wydarzenie"'>
     <p *ngIf="authService.isLoggedIn()">Czy na pewno chcesz zapisać się na wybrane wydarzenie?</p>

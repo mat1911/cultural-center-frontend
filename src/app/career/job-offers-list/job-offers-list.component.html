@@ -19,7 +19,7 @@
         <td>{{jobOffer.sinceDate}}</td>
         <td><a [routerLink]="['/careers', jobOffer.id]"class="btn btn-dark">Zobacz</a></td>
       </tr>
-      <tr *ngIf="!jobOffersList || !jobOffersList.length" class="text-center"><th colspan="5">BRAK OFERT PRACY</th></tr>
+      <tr *ngIf="!jobOffersList || !jobOffersList.length" class="text-center text-muted font-weight-bold"><th colspan="5">BRAK OFERT PRACY</th></tr>
     </tbody>
   </table>
   <div class="d-flex justify-content-center mt-5">
