@@ -2,12 +2,12 @@
 
 <div class="page_content mb-5">
     <div class="d-flex justify-content-between flex-wrap" *ngIf="competitionList && competitionList.length">
-        <div class="card" *ngFor="let competition of competitionList">
-            <a [routerLink]="['/competitions', competition.id]">
-                <img class="card-img-top" [src]="competition.pictureUrl" [alt]="competition.title" style="width: 25vw;">
-                <div class="card-body p-0">
+        <div class="card bg-dark" style="width: 33.33%;" *ngFor="let competition of competitionList">
+            <a [routerLink]="['/competitions', competition.id]" style="max-width: 100%; height: 100%;">
+                <img class="card-img-top" [src]="competition.pictureUrl" [alt]="competition.title" style="max-width: 100%;">
+                <div class="card-body p-0 h-100">
                     <a class="btn btn-dark font-weight-bold"
-                        style="width: 100%; height: 100%;">{{competition.title | uppercase }}</a>
+                        style="width: 100%; margin: auto;">{{competition.title | uppercase }}</a>
                 </div>
             </a>
         </div>

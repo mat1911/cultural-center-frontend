@@ -1,6 +1,6 @@
-
 <div class="content_title">KONTAKT</div>
 <div class="content list-group-item">
+
     <label class="font-weight-bold" for="address">Adres:</label>
     <div id="address">
         <p>Kwitnąca 15</p>
@@ -22,17 +22,22 @@
         <p>(PON - PT) 8:00 - 22:00</p>
         <p>SOB 8:00 - 16:00</p>
     </div>
+
+</div>
+
+<div class="content" style="height: 50vh;">
+    <app-map [longtitude]="21.208854" [latitude]="52.337580"></app-map>
 </div>
 
 
-<div class="content list-reset list-group-item" style="border-top: 1px solid rgba(0,0,0,.125);" >
+<div class="content list-reset list-group-item" style="border-top: 1px solid rgba(0,0,0,.125);">
     <p class="font-weight-bold text-center" style="font-size: 1.5vw;">Napisz do nas!</p>
     <form [formGroup]="contactFormGroup" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label class="font-weight-bold" for="userEmail" name="userEmail">Email</label>
             <input formControlName="userEmail" type="text" class="form-control"
-                [ngClass]="{ 'is-invalid': contactForm.userEmail.touched && contactForm.userEmail.errors != null }" id="title"
-                placeholder="Podaj swój adres email" required>
+                [ngClass]="{ 'is-invalid': contactForm.userEmail.touched && contactForm.userEmail.errors != null }"
+                id="title" placeholder="Podaj swój adres email" required>
 
             <div *ngIf="contactForm.userEmail.touched && contactForm.userEmail.errors != null" class="invalid-feedback">
                 Email musi zostać podany w poprawnym formacie!
@@ -42,8 +47,8 @@
         <div class="form-group">
             <label class="font-weight-bold" for="subject" name="subject">Temat</label>
             <input formControlName="subject" type="subject" class="form-control"
-                [ngClass]="{ 'is-invalid': contactForm.subject.touched && contactForm.subject.errors != null }" id="subject"
-                placeholder="Podaj temat wiadomości" required>
+                [ngClass]="{ 'is-invalid': contactForm.subject.touched && contactForm.subject.errors != null }"
+                id="subject" placeholder="Podaj temat wiadomości" required>
 
             <div *ngIf="contactForm.subject.touched && contactForm.subject.errors != null" class="invalid-feedback">
                 Temat musi być podany!
@@ -53,15 +58,15 @@
         <div class="form-group">
             <label class="font-weight-bold" for="message" name="message">Wiadomość</label>
             <textarea formControlName="message" type="number" class="form-control" rows="8" id="message"
-            placeholder="Wprowadź ilość wolnych miejsc"
-            [ngClass]="{ 'is-invalid': contactForm.message.touched && contactForm.message.errors != null }"
-            min="1"></textarea> 
+                placeholder="Wprowadź ilość wolnych miejsc"
+                [ngClass]="{ 'is-invalid': contactForm.message.touched && contactForm.message.errors != null }"
+                min="1"></textarea>
 
             <div *ngIf="contactForm.message.touched && contactForm.message.errors != null" class="invalid-feedback">
                 Wiadomość nie może być pusta!
             </div>
         </div>
-        
+
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary" style="width: 10vw;">Wyślij!</button>
         </div>

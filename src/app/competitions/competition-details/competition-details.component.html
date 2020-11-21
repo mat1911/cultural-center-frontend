@@ -1,9 +1,13 @@
 <div class="content_title mb-4">{{currentCompetition?.title}}</div>
 
-<div class="page_content">
+<div class="page_content list-group-item">
     <h4 class="font-weight-bold text-center mt-4">Opis konkursu:</h4>
-    <p class="text-center">{{currentCompetition?.description}}</p>
-    <button (click)="showNewContestantForm()" class="btn btn-dark mt-3">Zgłoś się</button>
+    <p style="white-space: pre-wrap;">{{currentCompetition?.description}}</p>
+    
+    <div class="d-flex justify-content-end">
+        <button (click)="showNewContestantForm()" class="btn btn-dark mt-3">Zgłoś się</button>
+    </div>
+
 </div>
 
 <div *ngIf="currentCompetition" class="page_content" style="margin-top: 15vh;">

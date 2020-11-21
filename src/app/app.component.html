@@ -8,7 +8,7 @@
 <app-header></app-header>
 
 <div class="container-fluid" style="height: 100vh;">
-  <div class="row h-100">
+  <div class="row h-100 ">
     <app-navigation-bar class="col-2 p-0" style="margin-top: 7vh;"></app-navigation-bar>
     <div class="col-10 p-0" style="margin-top: 7vh;">
       <ngb-alert style="white-space: pre-line;" *ngIf="notification$ | async as notification" [type]="notification.type" (close)="onCloseNotification()">

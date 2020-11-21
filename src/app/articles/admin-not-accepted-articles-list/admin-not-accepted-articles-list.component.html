@@ -19,7 +19,7 @@
           <td class="text-center"><a (click)="acceptModal.openModal(); selectedArticleId = article.id" class="btn btn-dark">Zaakceptuj</a></td>
           <td class="text-center"><a (click)="deleteModal.openModal(); selectedArticleId = article.id" class="btn btn-danger">Odrzuć</a></td>
         </tr>
-        <tr>
+        <tr *ngIf="!notAcceptedArticles || !notAcceptedArticles.length">
           <td colspan="6" class="text-center text-muted font-weight-bold">BRAK ARTYKUŁÓW DO AKCEPTACJI!</td>
         </tr>
       </tbody>

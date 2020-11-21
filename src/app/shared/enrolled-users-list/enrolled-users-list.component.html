@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="users$ | async as users">
-        <table *ngIf="users && users.length" class="table table-bordered mb-5">
+        <table class="table table-bordered mb-5">
             <thead>
                 <tr>
                     <th width="10%" scope="col">ID</th>
@@ -21,11 +21,10 @@
                     <td><a class="btn btn-danger" (click)="delistUser(user.id)"><i
                                 class="fa fa-minus-square"></i> </a></td>
                 </tr>
+                <tr *ngIf="!users || !users.length">
+                    <td colspan="6" class="text-center text-muted font-weight-bold">BRAK ZAPISANYCH UŻYTKOWNIKÓW!</td>
+                </tr>
             </tbody>
         </table>
-
-        <div *ngIf="!(users && users.length)" class="list-group mb-5">
-            <h5 class="list-group-item text-center">Brak zapisanych osób</h5>
-        </div>
     </div>
 </div>

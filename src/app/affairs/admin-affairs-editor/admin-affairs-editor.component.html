@@ -65,9 +65,10 @@
 <diV *ngIf="affairId">
     <div class="content_title">Zapisani użytkownicy</div>
 
-    <div class="center d-flex justify-content-end">
+    <div  class="center d-flex justify-content-end">
         <a *ngIf="!showUsersTable" (click)="showUsersTable=true" class="btn btn-dark mb-0">Przypisz użytkownika</a>
     </div>
+
     <div *ngIf="showUsersTable" class="center">
         <app-user-selector (choicesSubmitted)="enrollUsers($event)"></app-user-selector>
     </div>
