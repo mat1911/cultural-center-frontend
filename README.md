@@ -1,27 +1,96 @@
-# CulturalCenterFrontend
+# Application for cultural center management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+## Brief description
 
-## Development server
+It is the frontend part of an application that supports the management of cultural centres. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The programme provides users with many functions, for example:
+* sending messages to the institution,
+* signing up for events and rating them,
+* taking part in competitions and voting,
+* writing articles,
+* applying for jobs.
 
-## Code scaffolding
+Confirmation of the event registration is sent by email to the user.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Users with the administrator role can additionally manage the content of all tabs and manage the visibility of work submitted by users.
 
-## Build
+The application was built according to the REST architectural style. Authentication and authorisation is carried out using JWT.
+All files uploaded by users are stored in dropbox
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Link to backend part: https://github.com/mat1911/cultural_center_management
 
-## Running unit tests
+## Configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+For proper working, the application.properties file should be appropriately filled in.
 
-## Running end-to-end tests
+Sample file content:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```properties
+#DATABASE
+spring.jpa.hibernate.ddl-auto=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
 
-## Further help
+#JWT TOKENS
+tokens.access.expiration-time-ms=
+tokens.refresh.expiration-time-ms=
+tokens.refresh.property=access-token-expiration-time
+tokens.prefix=Bearer
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#DROPBOX
+dropbox.accesstoken=
+dropbox.datafolder=
+
+#EMAIL
+spring.mail.host = smtp.gmail.com
+spring.mail.port = 587
+spring.mail.properties.mail.smtp.starttls.enable = true
+spring.mail.properties.mail.smtp.starttls.required = true
+spring.mail.properties.mail.smtp.auth = true
+spring.mail.properties.mail.smtp.connectiontimeout = 5000
+spring.mail.properties.mail.smtp.timeout = 5000
+spring.mail.properties.mail.smtp.writetimeout = 5000
+spring.mail.username = 
+spring.mail.password = 
+```
+
+## Screenshots
+
+News page
+
+![News page](https://drive.google.com/uc?export=view&id=1Fk-9QMW5ZUff85M22BZRLeK--vJmxlOe)
+
+<br />
+
+Articles page
+
+![Articles page](https://drive.google.com/uc?export=view&id=107TcMuNdW8_fgXV4TKNRtymsUxS782Nx)
+
+<br />
+
+Page to manage article visibility by admin
+
+![Admin - articles](https://drive.google.com/uc?export=view&id=13xNW6btePUjZfR7mfMLFm56gTXiGgpwP)
+
+
+<br />
+
+Page to manage article visibility by admin
+
+![Contact page](https://drive.google.com/uc?export=view&id=1_8s_DRaqN33i73EjgxyxxzBqk6cn2FEU)
+
+
+<br />
+
+User events page
+
+![User events page](https://drive.google.com/uc?export=view&id=1GuDRnhX0vkBd4RSX9XcLc0IUKT1W5ScC)
+
+
+<br />
+
+Job offers page
+
+![Job offers page](https://drive.google.com/uc?export=view&id=1NfTfSFwD98JgaABA5zN948g0E3hmqTMQ)
